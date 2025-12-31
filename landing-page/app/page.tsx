@@ -1,8 +1,69 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
 export default function Home() {
+  const [displayedText1, setDisplayedText1] = useState("");
+  const [displayedText2, setDisplayedText2] = useState("");
+  const [hasStarted, setHasStarted] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const text1 = "Este projeto convida a igreja a uma jornada anual de leitura bíblica diária, percorrendo toda a Escritura de Gênesis a Apocalipse. A proposta é simples: pequenas porções lidas com atenção e entendimento, em vez de grandes blocos apressados. Essa abordagem reduz a desistência e permite enxergar a ação de Deus em toda a Bíblia simultaneamente. Não se trata apenas de cumprir uma meta, mas de formar um hábito transformador de caminhada constante nas Escrituras.";
+  const text2 = "Junte-se a nós nessa jornada! Comprometa-se a ouvir a leitura bíblica diária ou baixe o PDF para acompanhar. Juntos, vamos percorrer toda a Palavra de Deus ao longo do ano, para Sua glória. Comece hoje mesmo!";
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasStarted) {
+          setHasStarted(true);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      if (index < text1.length) {
+        setDisplayedText1(text1.slice(0, index + 1));
+        index++;
+      } else {
+        clearInterval(interval);
+      }
+    }, 20);
+
+    return () => clearInterval(interval);
+  }, [hasStarted]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
+    const delay = text1.length * 20;
+    const timeout = setTimeout(() => {
+      let index = 0;
+      const interval = setInterval(() => {
+        if (index < text2.length) {
+          setDisplayedText2(text2.slice(0, index + 1));
+          index++;
+        } else {
+          clearInterval(interval);
+        }
+      }, 20);
+    }, delay);
+
+    return () => clearTimeout(timeout);
+  }, [hasStarted]);
+
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#c89635' }}>
       <style jsx>{`
@@ -34,7 +95,7 @@ export default function Home() {
           100% {
             transform: translateY(0);
             opacity: 1;
-            filter: drop-shadow(8px 8px 25px rgba(0, 0, 0, 0.8));
+            filter: none;
           }
         }
 
@@ -60,6 +121,16 @@ export default function Home() {
         .scroll-content {
           display: inline-block;
           animation: scrollInfinite 20s linear infinite;
+        }
+
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+
+        .typing-cursor {
+          animation: blink 0.7s infinite;
+          margin-left: 2px;
         }
       `}</style>
 
@@ -168,6 +239,39 @@ export default function Home() {
               referrerPolicy="strict-origin-when-cross-origin"
               style={{ boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)' }}
             ></iframe>
+          </div>
+        </div>
+
+        <div ref={sectionRef} className="w-full px-6 py-12 max-w-3xl mx-auto">
+          <div
+            className="rounded-3xl p-8 md:p-12"
+            style={{
+              backgroundColor: '#f0e7d2',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.3)'
+            }}
+          >
+            <h1 className="text-3xl font-bold mb-6" style={{ color: '#1c1c1c' }}>
+              Sobre o projeto
+            </h1>
+            
+            <p
+              className="text-lg md:text-xl leading-relaxed mb-6"
+              style={{ color: '#1c1c1c', minHeight: '200px' }}
+            >
+              {displayedText1}
+              <br />
+              <br />
+              {displayedText2}
+              <span className="typing-cursor" style={{ opacity: displayedText1.length < text1.length ? 1 : 0, color: '#1c1c1c' }}>|</span>
+            </p>
+
+            {/* <p
+              className="text-lg md:text-xl leading-relaxed"
+              style={{ color: '#1c1c1c', minHeight: '100px' }}
+            >
+              {displayedText2}
+              <span className="typing-cursor" style={{ opacity: displayedText2.length < text2.length && displayedText1.length >= text1.length ? 1 : 0, color: '#1c1c1c' }}>|</span>
+            </p> */}
           </div>
         </div>
       </main>
