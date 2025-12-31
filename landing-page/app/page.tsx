@@ -165,6 +165,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-4 w-full px-6">
           <button
+            onClick={() => window.open('https://open.spotify.com/show/4qNJZVycYiNXHjaFF8qHjY?si=0ff0dd181d2242e9&nd=1&dlsi=12fad117b7e244d8', '_blank')}
             className="w-full py-3 px-6 rounded-3xl font-medium text-lg transition-all hover:scale-105"
             style={{
               backgroundColor: '#101010',
@@ -181,6 +182,7 @@ export default function Home() {
           <a
             href="/plano.pdf"
             download
+            target="_blank"
             className="w-full py-3 px-6 rounded-3xl font-medium text-lg transition-all hover:scale-105 block text-center"
             style={{
               backgroundColor: '#101010',
@@ -247,7 +249,7 @@ export default function Home() {
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             <iframe
               className="absolute top-0 left-0 w-full h-full rounded-2xl"
-              src="https://www.youtube.com/embed/0_-lvAyl_W4?enablejsapi=1&modestbranding=1&rel=0"
+              src="https://www.youtube.com/embed/kjsaiBr3-ko?enablejsapi=1&modestbranding=1&rel=0"
               title="Vídeo"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
