@@ -168,15 +168,14 @@ export default function Home() {
             className="w-full py-3 px-6 rounded-3xl font-medium text-lg transition-all hover:scale-105"
             style={{
               backgroundColor: '#101010',
-              marginTop: '35px',
               color: '#eee6d1',
-              fontSize: '23px',
+              fontSize: '21px',
               fontWeight: 'bold',
               letterSpacing: '1px',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)'
             }}
           >
-            OUÇA AGORA
+            OUÇA AGORA NO SPOTIFY
           </button>
 
           <a
@@ -186,7 +185,7 @@ export default function Home() {
             style={{
               backgroundColor: '#101010',
               color: '#eee6d1',
-              fontSize: '23px',
+              fontSize: '21px',
               fontWeight: 'bold',
               letterSpacing: '1px',
               boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
@@ -195,10 +194,27 @@ export default function Home() {
           >
             BAIXE O PLANO ANUAL
           </a>
+          <a
+            href="https://chat.whatsapp.com/DRb12ml3PEU0juWAvbFDSV  "
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full py-3 px-6 rounded-3xl font-medium text-lg transition-all hover:scale-105 block text-center"
+            style={{
+              backgroundColor: '#101010',
+              color: '#eee6d1',
+              fontSize: '21px',
+              fontWeight: 'bold',
+              letterSpacing: '1px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+              textDecoration: 'none'
+            }}
+          >
+            GRUPO DO WHATSAPP
+          </a>
         </div>
 
-        <div className="scroll-container w-full mt-12">
-          <div className="scroll-content" style={{ height: '50px' }}>
+        <div className="scroll-container w-full ">
+          <div className="scroll-content" style={{ height: '50px', marginTop: '70px', marginBottom: '25px' }}>
             <Image
               style={{
                 height: '50px',

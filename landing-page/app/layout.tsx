@@ -15,7 +15,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body
         className="antialiased"
-        style={{ fontFamily: 'Helvetica, Arial, sans-serif' }}
+        style={{ fontFamily: 'Helvetica, Arial, sans-serif', backgroundColor: '#f0e7d2' }}
       >
         {children}
       </body>
